@@ -243,8 +243,8 @@ export default function ServiceGraph({ health }) {
 
   return (
     <div style={{
-      background: 'rgba(0,0,0,0.3)',
-      border: '1px solid rgba(255,255,255,0.07)',
+      background: 'var(--app-overlay-bg)',
+      border: '1px solid var(--text-07)',
       borderRadius: 16, backdropFilter: 'blur(20px)',
       overflow: 'hidden',
     }}>
@@ -268,7 +268,7 @@ export default function ServiceGraph({ health }) {
             { label: 'degraded', color: '#fbbf24', count: counts.degraded },
             { label: 'critical', color: '#f87171', count: counts.critical },
           ].map(s => (
-            <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 10, color: 'rgba(255,255,255,0.38)' }}>
+            <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 10, color: 'var(--text-38)' }}>
               <div style={{ width: 6, height: 6, borderRadius: '50%', background: s.color }} />
               {s.count} {s.label}
             </div>
@@ -279,8 +279,8 @@ export default function ServiceGraph({ health }) {
       <canvas ref={canvasRef} style={{ width: '100%', height: 340, display: 'block' }} />
 
       <div style={{
-        padding: '10px 18px', borderTop: '1px solid rgba(255,255,255,0.05)',
-        fontSize: 10, color: 'rgba(255,255,255,0.2)', display: 'flex', gap: 16,
+        padding: '10px 18px', borderTop: '1px solid var(--text-05)',
+        fontSize: 10, color: 'var(--text-20)', display: 'flex', gap: 16,
       }}>
         <span>Particles = active request flow</span>
         <span>Arrows = dependency direction</span>

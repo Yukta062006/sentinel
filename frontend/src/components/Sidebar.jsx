@@ -174,7 +174,7 @@ export default function Sidebar({ page, setPage, anomalyCount, connected, demoMo
       </nav>
 
       {/* Footer */}
-      <div style={{ padding: '16px 20px 24px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{ padding: '16px 20px 24px', borderTop: '1px solid var(--text-05)' }}>
         <div style={{ fontSize: 10, color: 'var(--app-muted-strong)', lineHeight: 1.9, marginBottom: 8 }}>
           8 endpoints monitored<br />
           Llama 3.3 70B via Groq
@@ -183,9 +183,9 @@ export default function Sidebar({ page, setPage, anomalyCount, connected, demoMo
           display: 'flex', alignItems: 'center', gap: 5,
           fontSize: 9, color: 'var(--app-muted-strong)', fontFamily: 'monospace',
         }}>
-          <span style={{ background: 'var(--text-06)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 3, padding: '1px 4px' }}>1-4</span>
+          <span style={{ background: 'var(--text-06)', border: '1px solid var(--text-08)', borderRadius: 3, padding: '1px 4px' }}>1-4</span>
           <span>navigate</span>
-          <span style={{ marginLeft: 6, background: 'var(--text-06)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 3, padding: '1px 4px' }}>Esc</span>
+          <span style={{ marginLeft: 6, background: 'var(--text-06)', border: '1px solid var(--text-08)', borderRadius: 3, padding: '1px 4px' }}>Esc</span>
           <span>dismiss</span>
         </div>
       </div>

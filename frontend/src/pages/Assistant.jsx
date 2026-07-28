@@ -200,14 +200,14 @@ export default function Assistant({ getIncidentReport, anomalies }) {
             style={{
               flex: 1,
               background: 'var(--app-card-bg)',
-              border: '1px solid rgba(255,255,255,0.11)',
+              border: '1px solid var(--text-10)',
               borderRadius: 12, padding: '14px 18px',
-              fontSize: 14, color: 'white', outline: 'none',
+              fontSize: 14, color: 'var(--app-text)', outline: 'none',
               transition: 'border-color 0.18s',
               opacity: streaming ? 0.5 : 1,
             }}
             onFocus={e => e.target.style.borderColor = 'rgba(167,139,250,0.45)'}
-            onBlur={e  => e.target.style.borderColor = 'rgba(255,255,255,0.11)'}
+            onBlur={e  => e.target.style.borderColor = 'var(--text-10)'}
           />
           {streaming ? (
             <button
@@ -238,7 +238,7 @@ export default function Assistant({ getIncidentReport, anomalies }) {
             >Send</button>
           )}
         </div>
-        <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.28)', marginTop: 10 }}>
+        <p style={{ fontSize: 11, color: 'var(--text-28)', marginTop: 10 }}>
           Powered by Llama 3.3 70B via Groq · Press Enter to send
         </p>
       </div>

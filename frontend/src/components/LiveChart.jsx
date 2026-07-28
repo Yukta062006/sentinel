@@ -4,13 +4,13 @@ const Tip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null
   return (
     <div style={{
-      background: 'rgba(7,8,12,0.97)',
+      background: 'var(--app-tooltip-bg)',
       border: '1px solid rgba(139,92,246,0.25)',
       borderRadius: 10, padding: '10px 14px', fontSize: 12,
       backdropFilter: 'blur(16px)',
       boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
     }}>
-      <div style={{ color: 'rgba(255,255,255,0.28)', marginBottom: 6, fontSize: 11 }}>{label}</div>
+      <div style={{ color: 'var(--text-28)', marginBottom: 6, fontSize: 11 }}>{label}</div>
       {payload.map(p => (
         <div key={p.dataKey} style={{ color: p.stroke, fontWeight: 600, fontSize: 13 }}>
           {p.name}: {typeof p.value === 'number' ? p.value.toFixed(1) : p.value}
@@ -98,15 +98,15 @@ function ChartCard({ title, unit, color, sub, children }) {
   return (
     <div style={{
       background: 'var(--bg-03)',
-      border: '1px solid rgba(255,255,255,0.07)',
+      border: '1px solid var(--text-07)',
       borderTop: `1px solid ${color}22`,
       borderRadius: 14, padding: '14px 14px 8px',
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
         <div style={{ width: 6, height: 6, borderRadius: '50%', background: color, boxShadow: `0 0 8px ${color}` }} />
-        <span style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>{title}</span>
-        <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.18)' }}>· {unit}</span>
-        {sub && <span style={{ marginLeft: 'auto', fontSize: 9, color: 'rgba(255,255,255,0.2)' }}>{sub}</span>}
+        <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-62)' }}>{title}</span>
+        <span style={{ fontSize: 10, color: 'var(--text-20)' }}>· {unit}</span>
+        {sub && <span style={{ marginLeft: 'auto', fontSize: 9, color: 'var(--text-20)' }}>{sub}</span>}
       </div>
       {children}
     </div>
