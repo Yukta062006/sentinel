@@ -132,7 +132,7 @@ export default function Assistant({ getIncidentReport, anomalies }) {
       {/* Header */}
       <div style={{
         padding: '40px 60px 22px',
-        borderBottom: '1px solid rgba(255,255,255,0.07)',
+        borderBottom: '1px solid var(--text-07)',
         flexShrink: 0,
       }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: msgs.length <= 1 ? 22 : 0 }}>
@@ -187,7 +187,7 @@ export default function Assistant({ getIncidentReport, anomalies }) {
       {/* Input */}
       <div style={{
         padding: '14px 60px 32px',
-        borderTop: '1px solid rgba(255,255,255,0.07)',
+        borderTop: '1px solid var(--text-07)',
         flexShrink: 0,
       }}>
         <div style={{ display: 'flex', gap: 10, maxWidth: 820 }}>
@@ -229,7 +229,7 @@ export default function Assistant({ getIncidentReport, anomalies }) {
                 background: loading || !input.trim()
                   ? 'var(--text-06)'
                   : 'linear-gradient(135deg, #8b5cf6, #a78bfa)',
-                color: loading || !input.trim() ? 'rgba(255,255,255,0.25)' : 'white',
+                color: loading || !input.trim() ? 'var(--text-25)' : 'white',
                 fontSize: 13, fontWeight: 600,
                 cursor: loading || !input.trim() ? 'not-allowed' : 'pointer',
                 transition: 'all 0.16s',

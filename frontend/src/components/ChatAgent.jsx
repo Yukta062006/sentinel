@@ -130,7 +130,7 @@ export default function ChatAgent({ sendChat, getIncidentReport }) {
           transition: 'all 0.2s',
         }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-            stroke={loading || !input.trim() ? 'rgba(255,255,255,0.25)' : 'white'} strokeWidth="2.5">
+            stroke={loading || !input.trim() ? 'var(--text-25)' : 'white'} strokeWidth="2.5">
             <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
           </svg>
         </button>

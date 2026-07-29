@@ -13,7 +13,7 @@ const STATUS_BG = {
   healthy:  '#34d399',
   degraded: '#fbbf24',
   critical: '#f87171',
-  unknown:  'rgba(255,255,255,0.07)',
+  unknown:  'var(--text-07)',
 }
 
 export default function HealthHeatmap({ healthHistory }) {

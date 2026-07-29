@@ -51,7 +51,7 @@ export default function ToastNotifications({ anomalies }) {
               background: 'var(--app-tooltip-bg)',
               border: `1px solid ${cfg.border}`,
               backdropFilter: 'blur(24px)',
-              boxShadow: `0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px ${cfg.border}`,
+              boxShadow: `0 8px 40px var(--app-shadow), 0 0 0 1px ${cfg.border}`,
               overflow: 'hidden',
               animation: 'toastSlide 0.35s cubic-bezier(0.22,1,0.36,1)',
             }}

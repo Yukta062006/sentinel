@@ -91,7 +91,7 @@ export default function Incidents({ anomalies, aiAnalyses }) {
               {count > 0 && (
                 <span style={{
                   fontSize: 9, fontWeight: 700, minWidth: 16, height: 16, borderRadius: 8,
-                  background: active ? 'rgba(196,181,253,0.25)' : 'rgba(255,255,255,0.1)',
+                  background: active ? 'rgba(196,181,253,0.25)' : 'var(--text-10)',
                   color: active ? '#ddd6fe' : 'var(--text-50)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px',
                 }}>{count}</span>

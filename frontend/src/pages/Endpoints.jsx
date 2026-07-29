@@ -128,7 +128,7 @@ export default function Endpoints({ health }) {
 function LatencySparkline({ data, status }) {
   if (data.length < 2) return (
     <div style={{ width: 140, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)' }}>building…</span>
+      <span style={{ fontSize: 10, color: 'var(--text-20)' }}>building…</span>
     </div>
   )
 
@@ -160,7 +160,7 @@ function LatencySparkline({ data, status }) {
               borderRadius: 6,
               fontSize: 11,
               padding: '3px 8px',
-              color: 'rgba(255,255,255,0.8)',
+              color: 'var(--text-80)',
             }}
             formatter={(v) => [`${v}ms`, 'latency']}
             labelFormatter={() => ''}
@@ -221,7 +221,7 @@ function EndpointRow({ endpoint, stats, index, latencyHistory }) {
 
             <span style={{
               fontSize: 10, fontWeight: 700, letterSpacing: '0.3px',
-              background: 'var(--text-06)', border: '1px solid rgba(255,255,255,0.1)',
+              background: 'var(--text-06)', border: '1px solid var(--text-10)',
               color: 'var(--text-50)', padding: '1px 8px', borderRadius: 5,
             }}>
               {info.method}

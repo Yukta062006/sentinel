@@ -1,4 +1,23 @@
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts'
+import { useState, useEffect } from 'react'
+
+function useThemeColors() {
+  const [colors, setColors] = useState({ tick: 'rgba(255,255,255,0.18)', grid: 'rgba(255,255,255,0.03)' })
+  useEffect(() => {
+    const update = () => {
+      const style = getComputedStyle(document.documentElement)
+      setColors({
+        tick: style.getPropertyValue('--text-20').trim() || 'rgba(255,255,255,0.18)',
+        grid: style.getPropertyValue('--text-03').trim() || 'rgba(255,255,255,0.03)',
+      })
+    }
+    update()
+    const observer = new MutationObserver(update)
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    return () => observer.disconnect()
+  }, [])
+  return colors
+}
 
 const Tip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null
@@ -22,6 +41,7 @@ const Tip = ({ active, payload, label }) => {
 }
 
 export default function LiveChart({ timeseries }) {
+  const { tick, grid } = useThemeColors()
   const data = timeseries.map(t => ({
     ...t,
     time:        t.second?.slice(14, 19) || '',
@@ -43,9 +63,9 @@ export default function LiveChart({ timeseries }) {
                 <stop offset="100%" stopColor="#22d3ee" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
-            <XAxis dataKey="time" tick={{ fill: 'rgba(255,255,255,0.18)', fontSize: 10 }} axisLine={false} tickLine={false} interval="preserveStartEnd" />
-            <YAxis tick={{ fill: 'rgba(255,255,255,0.18)', fontSize: 10 }} axisLine={false} tickLine={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke={grid} vertical={false} />
+            <XAxis dataKey="time" tick={{ fill: tick, fontSize: 10 }} axisLine={false} tickLine={false} interval="preserveStartEnd" />
+            <YAxis tick={{ fill: tick, fontSize: 10 }} axisLine={false} tickLine={false} />
             <Tooltip content={<Tip />} />
             <ReferenceLine y={200} stroke="rgba(251,191,36,0.35)" strokeDasharray="4 4" label={{ value: 'SLA', position: 'right', fontSize: 9, fill: 'rgba(251,191,36,0.6)' }} />
             <Area type="monotone" dataKey="avg_latency" name="Avg Latency" stroke="#22d3ee" strokeWidth={2} fill="url(#lgLatency)" dot={false} isAnimationActive={false} />
@@ -62,9 +82,9 @@ export default function LiveChart({ timeseries }) {
                 <stop offset="100%" stopColor="#f87171" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
-            <XAxis dataKey="time" tick={{ fill: 'rgba(255,255,255,0.18)', fontSize: 10 }} axisLine={false} tickLine={false} interval="preserveStartEnd" />
-            <YAxis tick={{ fill: 'rgba(255,255,255,0.18)', fontSize: 10 }} axisLine={false} tickLine={false} domain={[0, (dataMax) => Math.max(dataMax * 1.2, 10)]} />
+            <CartesianGrid strokeDasharray="3 3" stroke={grid} vertical={false} />
+            <XAxis dataKey="time" tick={{ fill: tick, fontSize: 10 }} axisLine={false} tickLine={false} interval="preserveStartEnd" />
+            <YAxis tick={{ fill: tick, fontSize: 10 }} axisLine={false} tickLine={false} domain={[0, (dataMax) => Math.max(dataMax * 1.2, 10)]} />
             <Tooltip content={<Tip />} />
             <ReferenceLine y={5} stroke="rgba(251,191,36,0.35)" strokeDasharray="4 4" label={{ value: '5%', position: 'right', fontSize: 9, fill: 'rgba(251,191,36,0.6)' }} />
             <Area type="monotone" dataKey="error_rate" name="Error" stroke="#f87171" strokeWidth={2} fill="url(#lgError)" dot={false} isAnimationActive={false} />
@@ -81,9 +101,9 @@ export default function LiveChart({ timeseries }) {
                 <stop offset="100%" stopColor="#a78bfa" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
-            <XAxis dataKey="time" tick={{ fill: 'rgba(255,255,255,0.18)', fontSize: 10 }} axisLine={false} tickLine={false} interval="preserveStartEnd" />
-            <YAxis tick={{ fill: 'rgba(255,255,255,0.18)', fontSize: 10 }} axisLine={false} tickLine={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke={grid} vertical={false} />
+            <XAxis dataKey="time" tick={{ fill: tick, fontSize: 10 }} axisLine={false} tickLine={false} interval="preserveStartEnd" />
+            <YAxis tick={{ fill: tick, fontSize: 10 }} axisLine={false} tickLine={false} />
             <Tooltip content={<Tip />} />
             <Area type="monotone" dataKey="req_count" name="Requests" stroke="#a78bfa" strokeWidth={2} fill="url(#lgRps)" dot={false} isAnimationActive={false} />
           </AreaChart>

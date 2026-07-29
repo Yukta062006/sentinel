@@ -86,6 +86,20 @@ export default function ServiceGraph({ health }) {
     const getStatus = (id) => healthRef.current?.[id]?.status || 'unknown'
     const getColor  = (id) => STATUS[getStatus(id)] || STATUS.unknown
 
+    // Read theme-aware colors from CSS variables (updates on theme change)
+    let edgeColor = 'rgba(255,255,255,0.07)'
+    let arrowColor = 'rgba(255,255,255,0.18)'
+    let nodeLabelColor = 'rgba(255,255,255,0.65)'
+    const readThemeColors = () => {
+      const style = getComputedStyle(document.documentElement)
+      edgeColor = style.getPropertyValue('--text-07').trim() || edgeColor
+      arrowColor = style.getPropertyValue('--text-20').trim() || arrowColor
+      nodeLabelColor = style.getPropertyValue('--text-62').trim() || nodeLabelColor
+    }
+    readThemeColors()
+    const themeObserver = new MutationObserver(readThemeColors)
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+
     const nodePos      = (n) => ({ x: n.rx * W, y: n.ry * H })
     const controlPoint = (p1, p2) => {
       const mx = (p1.x + p2.x) / 2
@@ -114,7 +128,7 @@ export default function ServiceGraph({ health }) {
         ctx.beginPath()
         ctx.moveTo(p1.x, p1.y)
         ctx.quadraticCurveTo(cp.x, cp.y, p2.x, p2.y)
-        ctx.strokeStyle = 'rgba(255,255,255,0.07)'
+        ctx.strokeStyle = edgeColor
         ctx.lineWidth = 1.5
         ctx.setLineDash([4, 6])
         ctx.stroke()
@@ -130,7 +144,7 @@ export default function ServiceGraph({ health }) {
         ctx.lineTo(ptEnd.x - aLen * Math.cos(angle - aAng), ptEnd.y - aLen * Math.sin(angle - aAng))
         ctx.moveTo(ptEnd.x, ptEnd.y)
         ctx.lineTo(ptEnd.x - aLen * Math.cos(angle + aAng), ptEnd.y - aLen * Math.sin(angle + aAng))
-        ctx.strokeStyle = 'rgba(255,255,255,0.18)'
+        ctx.strokeStyle = arrowColor
         ctx.lineWidth = 1.2
         ctx.stroke()
       })
@@ -220,7 +234,7 @@ export default function ServiceGraph({ health }) {
 
         // Short name inside node
         ctx.font = '700 9px Inter, sans-serif'
-        ctx.fillStyle = 'rgba(255,255,255,0.65)'
+        ctx.fillStyle = nodeLabelColor
         ctx.fillText(node.label, x, y + 3.5)
       })
 
@@ -232,6 +246,7 @@ export default function ServiceGraph({ health }) {
     return () => {
       cancelAnimationFrame(rafRef.current)
       window.removeEventListener('resize', onResize)
+      themeObserver.disconnect()
     }
   }, []) // empty deps — runs once, reads health via healthRef every frame
 

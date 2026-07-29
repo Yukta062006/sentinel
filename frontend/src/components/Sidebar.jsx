@@ -96,7 +96,7 @@ export default function Sidebar({ page, setPage, anomalyCount, connected, demoMo
             <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
               <div style={{
                 width: 5, height: 5, borderRadius: '50%',
-                background: connected ? '#a78bfa' : 'rgba(255,255,255,0.25)',
+                background: connected ? '#a78bfa' : 'var(--text-25)',
                 boxShadow: connected ? '0 0 8px rgba(167,139,250,1)' : 'none',
                 animation: connected ? 'pulse 2s infinite' : 'none',
               }} />
